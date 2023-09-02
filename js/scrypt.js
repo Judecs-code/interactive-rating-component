@@ -5,13 +5,13 @@ const numberBtn = document.querySelector(".rating__btn-div");
 const btnExit = document.querySelector(".exit-btn");
 const thanksSubHeading = document.querySelector(".thanks__sub-heading");
 const ratingBtn = document.querySelectorAll(".rating__btn");
-
+let pickedNumber;
 const init = function () {
   sectionRating.classList.remove("hidden");
   sectionThanks.classList.add("hidden");
 
   ratingBtn.forEach((el) => el.classList.remove("btn-active"));
-  let pickedNumber = 0;
+  pickedNumber = 0;
 };
 init();
 
@@ -27,7 +27,10 @@ numberBtn.addEventListener("click", function (e) {
 });
 
 submitBtn.addEventListener("click", function () {
-  thanksSubHeading.textContent = `You selected ${pickedNumber} out of 5`;
+  if (pickedNumber < 1) {
+    window.alert("you have not picked a number");
+    return;
+  } else thanksSubHeading.textContent = `You selected ${pickedNumber} out of 5`;
   sectionRating.classList.toggle("hidden");
   sectionThanks.classList.toggle("hidden");
 });
